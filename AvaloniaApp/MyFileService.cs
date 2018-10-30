@@ -1,15 +1,18 @@
-namespace service{
+using Avalonia.Controls;
+
+namespace Service{
 class MyFileService : IFileService
 {
-    string IFileService.GetSaveLocation()
+
+        string IFileService.GetSaveLocation()
     {
-        System.Windows.Forms.OpenFileDialog openFileDialog;
-        this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
+            return "something";
     }
 
     void IFileService.SaveOutput(string output)
     {
-        throw new System.NotImplementedException();
+        
     }
 }
 }

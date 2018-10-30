@@ -1,7 +1,8 @@
-namespace service{
-    internal interface IFileService
+namespace Service
 {
-    string GetSaveLocation();
-    void SaveOutput(string output);
-}
+    internal interface IFileService
+    {
+        string GetSaveLocation();
+        void SaveOutput(string output);
+    }
 }
