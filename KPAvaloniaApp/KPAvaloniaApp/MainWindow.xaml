@@ -1,0 +1,55 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KPAvaloniaApp">
+  <Window.Styles>
+    <Style Selector="Button">
+      <Setter Property="Margin"
+              Value="10,0"/>
+      <Setter Property="Padding"
+              Value="10,0"/>
+    </Style>
+  </Window.Styles>
+  <DockPanel>
+  <TextBlock DockPanel.Dock="Top" Text="My Avalonia App"/>
+    <TabControl>
+      <TabItem Header="Pictures">
+        <Grid ColumnDefinitions="*"
+              RowDefinitions="Auto,Auto">
+
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Select a file to open: "/>
+            <TextBox Text="{Binding PathToPictures" Width="300"/>
+            <Button Content="Browse"/>
+            <Button Content="Load"/>            
+          </StackPanel>
+          <ListView Grid.Row="1"
+                  Name="listViewPictures"
+                  ItemsSource="{Binding Path=ProjectList}"
+                  SelectedItem="{Binding SelectedProject}"
+                  SelectedIndex="0"
+                  Background="Transparent"
+                  >
+
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <Button Background="{Binding ProjectColor}"
+                    Style="{StaticResource ProjectButtonStyle}"
+                        Template="{DynamicResource ProjectButtonTemplate}"
+                        Content="{Binding Name}" />
+              </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel />
+              </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+          </ListView>
+        </Grid>
+      </TabItem>
+
+      <TabItem Header="Vacations">
+        
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>
