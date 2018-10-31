@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPAvaloniaApp", "KPAvaloniaApp\KPAvaloniaApp.csproj", "{DEABD4A6-5842-414E-8C5B-69491906DE24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KPAvaloniaApp", "KPAvaloniaApp\KPAvaloniaApp.csproj", "{DEABD4A6-5842-414E-8C5B-69491906DE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{A6A6D695-8C9F-4CC1-A84A-B6CF5A2B6564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interface\Interfaces.csproj", "{A77E2A69-E6D3-4BED-B9A8-CD429870011B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DEABD4A6-5842-414E-8C5B-69491906DE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEABD4A6-5842-414E-8C5B-69491906DE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEABD4A6-5842-414E-8C5B-69491906DE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A6D695-8C9F-4CC1-A84A-B6CF5A2B6564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A6D695-8C9F-4CC1-A84A-B6CF5A2B6564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A6D695-8C9F-4CC1-A84A-B6CF5A2B6564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A6D695-8C9F-4CC1-A84A-B6CF5A2B6564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A77E2A69-E6D3-4BED-B9A8-CD429870011B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A77E2A69-E6D3-4BED-B9A8-CD429870011B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A77E2A69-E6D3-4BED-B9A8-CD429870011B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A77E2A69-E6D3-4BED-B9A8-CD429870011B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

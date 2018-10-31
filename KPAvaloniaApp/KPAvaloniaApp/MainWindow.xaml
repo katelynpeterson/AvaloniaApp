@@ -12,42 +12,24 @@
   <DockPanel>
   <TextBlock DockPanel.Dock="Top" Text="My Avalonia App"/>
     <TabControl>
-      <TabItem Header="Pictures">
+      <TabItem Header="Picture">
         <Grid ColumnDefinitions="*"
               RowDefinitions="Auto,Auto">
 
           <StackPanel Orientation="Horizontal">
             <TextBlock Text="Select a file to open: "/>
-            <TextBox Text="{Binding PathToPictures" Width="300"/>
-            <Button Content="Browse"/>
-            <Button Content="Load"/>            
+            <TextBox Text="{Binding PathToPicture}" Width="300"/>
+            <Button Content="Browse" Command="{Binding LoadImage}"/>
+            <Button Content="Load" Command="{Binding FindFile}"/>            
           </StackPanel>
-          <ListView Grid.Row="1"
-                  Name="listViewPictures"
-                  ItemsSource="{Binding Path=ProjectList}"
-                  SelectedItem="{Binding SelectedProject}"
-                  SelectedIndex="0"
-                  Background="Transparent"
-                  >
 
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <Button Background="{Binding ProjectColor}"
-                    Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}"
-                        Content="{Binding Name}" />
-              </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <WrapPanel />
-              </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-          </ListView>
+          <Canvas Grid.Row="1" Name="PictureViewer">
+          </Canvas>
+          
         </Grid>
       </TabItem>
 
-      <TabItem Header="Vacations">
+      <TabItem Header="Map">
         
       </TabItem>
     </TabControl>
