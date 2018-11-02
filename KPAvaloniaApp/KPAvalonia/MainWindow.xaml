@@ -6,6 +6,9 @@
   <Window.DataContext>
     <local:AvaloniaViewModel/>
   </Window.DataContext>
+  <Window.Resources>
+    <local:MyImageConverter x:Key="TypeConverter" />
+  </Window.Resources>
   <Window.Styles>
     <Style Selector="Button">
       <Setter Property="Margin"
@@ -29,7 +32,9 @@
           </StackPanel>
           <TextBlock Text="{Binding Output}"/>
 
-          <Canvas Grid.Row="1" Name="Viewer" Background="{Binding ImageViewer}"/>
+          <Canvas Grid.Row="1" Name="Viewer">
+            <Image Source="{Binding PathToPicture, Converter={StaticResource TypeConverter}}" Canvas.Top ="0" Canvas.Left="0"/>
+          </Canvas>
           
         </Grid>
       </TabItem>

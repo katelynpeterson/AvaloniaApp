@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Text;
 using Data;
 using Interfaces;
+using Avalonia.Data.Converters;
 
 namespace KPAvalonia
 {
@@ -15,8 +14,7 @@ namespace KPAvalonia
 
         public AvaloniaViewModel(IDataService data)
         {
-            this.data = data ?? throw new ArgumentNullException(nameof(data));
-            
+            this.data = data ?? throw new ArgumentNullException(nameof(data));            
         }
 
         private string pathToPicture;
@@ -51,9 +49,7 @@ namespace KPAvalonia
         {
             Output = "Loading...";
             IsBusy = true;
-            //foreach (var p in await data.GetPeopleFromGedcomAsync(PathToPicture))
-            //    People.Add(p);
-            //Output = $"We found {People.Count} people in {PathToPicture}!";
+            //ImageViewer = new MyImageConverter();
             IsBusy = false;
         }));
 
@@ -82,14 +78,14 @@ namespace KPAvalonia
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Image imageViewer;
-        public Image ImageViewer
-        {
-            get { return imageViewer; }
-            set { imageViewer = value;
-                OnPropertyChanged(nameof(ImageViewer));
-            }
-        }
+        //private MyImageConverter imageViewer;
+        //public MyImageConverter ImageViewer
+        //{
+        //    get { return imageViewer; }
+        //    set { imageViewer = value;
+        //        OnPropertyChanged(nameof(ImageViewer));
+        //    }
+        //}
 
     }
 }
