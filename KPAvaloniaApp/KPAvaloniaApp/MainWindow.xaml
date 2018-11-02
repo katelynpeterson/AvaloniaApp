@@ -1,6 +1,11 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:KPAvaloniaApp;assembly=KPAvaloniaApp"
+        xmlns:interfaces="clr-namespace:Interfaces;assembly=Interfaces"
         Title="KPAvaloniaApp">
+  <Window.DataContext>
+    <local:AvaloniaViewModel/>
+  </Window.DataContext>
   <Window.Styles>
     <Style Selector="Button">
       <Setter Property="Margin"
@@ -16,15 +21,15 @@
         <Grid ColumnDefinitions="*"
               RowDefinitions="Auto,Auto">
 
-          <StackPanel Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Margin="20">
             <TextBlock Text="Select a file to open: "/>
             <TextBox Text="{Binding PathToPicture}" Width="300"/>
-            <Button Content="Browse" Command="{Binding LoadImage}"/>
-            <Button Content="Load" Command="{Binding FindFile}"/>            
+            <Button Content="Browse" Command="{Binding FindFile}"/>
+            <Button Content="Load" Command="{Binding LoadImage}"/>            
           </StackPanel>
+          <TextBlock Text="{Binding Output}"/>
 
-          <Canvas Grid.Row="1" Name="PictureViewer">
-          </Canvas>
+          <!--<Canvas Grid.Row="1" Name="Viewer" Background="{Binding ImageViewer}"/>-->
           
         </Grid>
       </TabItem>

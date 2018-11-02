@@ -5,7 +5,7 @@ namespace Interfaces
 {
     public interface IDataService
     {
-        bool FileExists(string gedcomFile);
+        bool FileExists(string imageFile);
         Task<string> FindFileAsync();
     }
 }

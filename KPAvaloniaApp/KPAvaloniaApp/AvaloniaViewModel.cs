@@ -24,6 +24,7 @@ namespace KPAvaloniaApp
             {
                 pathToPicture=value;
                 OnPropertyChanged(nameof(PathToPicture));
+                LoadImage.RaiseCanExecuteChanged();
             }
         }
 
@@ -46,7 +47,7 @@ namespace KPAvaloniaApp
         async () => //execute
         {
             Output = "Loading...";
-            //IsBusy = true;
+            IsBusy = true;
             //foreach (var p in await data.GetPeopleFromGedcomAsync(PathToPicture))
             //    People.Add(p);
             //Output = $"We found {People.Count} people in {PathToPicture}!";
@@ -77,5 +78,15 @@ namespace KPAvaloniaApp
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private Image imageViewer;
+        public Image ImageViewer
+        {
+            get { return imageViewer; }
+            set { imageViewer = value;
+                OnPropertyChanged(nameof(ImageViewer));
+            }
+        }
+
     }
 }
