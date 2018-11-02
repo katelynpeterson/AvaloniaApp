@@ -49,7 +49,6 @@ namespace KPAvalonia
         {
             Output = "Loading...";
             IsBusy = true;
-            //ImageViewer = new MyImageConverter();
             IsBusy = false;
         }));
 
@@ -77,15 +76,6 @@ namespace KPAvalonia
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         public event PropertyChangedEventHandler PropertyChanged;
-
-        //private MyImageConverter imageViewer;
-        //public MyImageConverter ImageViewer
-        //{
-        //    get { return imageViewer; }
-        //    set { imageViewer = value;
-        //        OnPropertyChanged(nameof(ImageViewer));
-        //    }
-        //}
 
     }
 }
