@@ -29,7 +29,7 @@
           </StackPanel>
           <TextBlock Text="{Binding Output}"/>
 
-          <!--<Canvas Grid.Row="1" Name="Viewer" Background="{Binding ImageViewer}"/>-->
+          <Canvas Grid.Row="1" Name="Viewer" Background="{Binding ImageViewer}"/>
           
         </Grid>
       </TabItem>
