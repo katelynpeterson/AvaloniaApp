@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows.Input;
 
-namespace KPAvaloniaApp
+namespace KPAvalonia
 {
-    public class SimpleCommand : ICommand
+    class MyCommand : ICommand
     {
         private readonly Func<bool> canExecute;
         private readonly Action execute;
 
-        public SimpleCommand(Action execute)
+        public MyCommand(Action execute)
         {
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
         }
 
-        public SimpleCommand(Func<bool> canExecute, Action execute)
+        public MyCommand(Func<bool> canExecute, Action execute)
         {
             this.canExecute = canExecute;
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));

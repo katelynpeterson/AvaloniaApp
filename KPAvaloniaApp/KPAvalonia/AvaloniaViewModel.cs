@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
+using Data;
+using Interfaces;
 
-namespace KPAvaloniaApp
+namespace KPAvalonia
 {
     class AvaloniaViewModel : INotifyPropertyChanged
     {
