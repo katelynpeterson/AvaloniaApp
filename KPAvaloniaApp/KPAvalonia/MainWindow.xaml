@@ -18,7 +18,9 @@
     </Style>
     <Style Selector="TextBlock.Header">
       <Setter Property="FontSize"
-              Value="30"/>
+              Value="24"/>
+      <Setter Property="HorizontalAlignment"
+              Value="Center"/>
     </Style>
   </Window.Styles>
   <DockPanel>
@@ -44,9 +46,67 @@
       </TabItem>
 
       <TabItem Header="Map">
-        <Grid ColumnDefinitions="Auto"
+        <Grid ColumnDefinitions="Auto,Auto"
               RowDefinitions="Auto,Auto,Auto">
-          <TextBlock Text="What do you want to do?"/>
+          <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Search for news: "/>
+          <TextBox MinWidth="100"/>
+          <Button Content="Search" Command="{Binding GetNews}"/>
+          </StackPanel>
+          <TextBlock Text="{Binding TotalNewsResults}"/>
+          <ListBox Grid.Row="2"
+                   Items="{Binding Articles}"
+                   SelectedItem="{Binding SelectedArticle}"
+                   Margin="5">
+            <ListBox.DataTemplates>
+              <DataTemplate DataType="interfaces:NewsArticles">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding Title}" />
+                  <TextBlock Text="{Binding PublishedAt}" />
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.DataTemplates>
+          </ListBox>
+
+          <Grid DataContext="{Binding SelectedArticle}"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+                  ColumnDefinitions="Auto,*">
+              <TextBlock Text="Title" />
+              <TextBlock Grid.Column="1"
+                         Text="{Binding Title}" />
+
+              <TextBlock Text="Author"
+                         Grid.Row="1"/>
+              <TextBlock Grid.Column="1"
+                         Grid.Row="1"
+                         Text="{Binding Author}" />
+
+              <TextBlock Text="Description"
+                         Grid.Row="2"/>
+              <TextBlock Grid.Column="1"
+                         Grid.Row="2"
+                         Text="{Binding Description}" />
+
+              <TextBlock Text="Url"
+                         Grid.Row="3"/>
+              <TextBlock Grid.Column="1"
+                         Grid.Row="3"
+                         Text="{Binding Url}" />
+
+              <TextBlock Text="Image"
+                         Grid.Row="4"/>
+              <TextBlock Grid.Column="1"
+                         Grid.Row="4"
+                         Text="{Binding Image}" />
+
+              <TextBlock Text="Published At"
+                         Grid.Row="5"/>
+              <TextBlock Grid.Column="1"
+                         Grid.Row="5"
+                         Text="{Binding PublishedAt}" />
+            </Grid>
+
+            <TextBlock Text="Powered by NewsAPI"/>
         </Grid>
       </TabItem>
     </TabControl>

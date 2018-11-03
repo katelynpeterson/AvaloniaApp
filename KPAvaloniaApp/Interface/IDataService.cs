@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KPAvalonia;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Interfaces
@@ -7,5 +9,7 @@ namespace Interfaces
     {
         bool FileExists(string imageFile);
         Task<string> FindFileAsync();
+        Task<ObservableCollection<NewsArticles>> GetNews(string searchQuery);
+        string GetSearchResults();
     }
 }

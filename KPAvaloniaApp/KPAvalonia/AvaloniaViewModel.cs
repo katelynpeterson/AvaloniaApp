@@ -4,6 +4,7 @@ using System.Drawing;
 using Data;
 using Interfaces;
 using Avalonia.Data.Converters;
+using System.Collections.ObjectModel;
 
 namespace KPAvalonia
 {
@@ -14,7 +15,59 @@ namespace KPAvalonia
 
         public AvaloniaViewModel(IDataService data)
         {
-            this.data = data ?? throw new ArgumentNullException(nameof(data));            
+            this.data = data ?? throw new ArgumentNullException(nameof(data));
+            Articles = new ObservableCollection<NewsArticles>();
+        }
+
+        private string totalNewsResults;
+        public string TotalNewsResults
+        {
+            get => totalNewsResults;
+            set
+            {
+                totalNewsResults = value;
+                OnPropertyChanged(nameof(TotalNewsResults));
+            }
+        }
+
+        private string searchQuery;
+        public string SearchQuery
+        {
+            get { return searchQuery; }
+            set
+            {
+                searchQuery = value;
+                OnPropertyChanged(nameof(SearchQuery));
+            }
+        }
+
+
+
+        private MyCommand getNews;
+        public MyCommand GetNews => getNews ?? (getNews = new MyCommand(async () =>
+        {
+            try
+            {
+                Articles = await data.GetNews(SearchQuery);
+                TotalNewsResults = data.GetSearchResults();
+            }
+            catch (Exception ex)
+            {
+                TotalNewsResults = $"Whoops!  Error: {ex.Message}";
+            }
+        }));
+
+        public ObservableCollection<NewsArticles> Articles { get; private set; }
+
+        private NewsArticles selectedArticle;
+        public NewsArticles SelectedArticle
+        {
+            get => selectedArticle;
+            set
+            {
+                selectedArticle = value;
+                OnPropertyChanged(nameof(SelectedArticle));
+            }
         }
 
         private string pathToPicture;
