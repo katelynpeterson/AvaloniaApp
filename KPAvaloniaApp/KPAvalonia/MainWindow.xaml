@@ -16,9 +16,13 @@
       <Setter Property="Padding"
               Value="10,0"/>
     </Style>
+    <Style Selector="TextBlock.Header">
+      <Setter Property="FontSize"
+              Value="30"/>
+    </Style>
   </Window.Styles>
   <DockPanel>
-  <TextBlock DockPanel.Dock="Top" Text="My Avalonia App"/>
+  <TextBlock Classes="Header" DockPanel.Dock="Top" Text="My Avalonia App"/>
     <TabControl>
       <TabItem Header="Picture">
         <Grid ColumnDefinitions="*"
@@ -40,7 +44,10 @@
       </TabItem>
 
       <TabItem Header="Map">
-        
+        <Grid ColumnDefinitions="Auto"
+              RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Text="What do you want to do?"/>
+        </Grid>
       </TabItem>
     </TabControl>
   </DockPanel>
