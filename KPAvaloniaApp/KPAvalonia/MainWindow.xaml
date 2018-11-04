@@ -22,9 +22,15 @@
       <Setter Property="HorizontalAlignment"
               Value="Center"/>
     </Style>
+    <Style Selector="TextBox">
+      <Setter Property="Margin" Value="5" />
+    </Style>
+    <Style Selector="TextBlock">
+      <Setter Property="Margin" Value="5" />
+    </Style>
   </Window.Styles>
   <DockPanel>
-  <TextBlock Classes="Header" DockPanel.Dock="Top" Text="My Avalonia App"/>
+    <TextBlock Classes="Header" DockPanel.Dock="Top" Text="My Avalonia App"/>
     <TabControl>
       <TabItem Header="Picture">
         <Grid ColumnDefinitions="*"
@@ -34,26 +40,32 @@
             <TextBlock Text="Select a file to open: "/>
             <TextBox Text="{Binding PathToPicture}" Width="300"/>
             <Button Content="Browse" Command="{Binding FindFile}"/>
-            <Button Content="Load" Command="{Binding LoadImage}"/>            
+            <Button Content="Load" Command="{Binding LoadImage}"/>
           </StackPanel>
           <TextBlock Text="{Binding Output}"/>
 
           <Canvas Grid.Row="1" Name="Viewer">
             <Image Source="{Binding PathToPicture, Converter={StaticResource TypeConverter}}" Canvas.Top ="0" Canvas.Left="0"/>
           </Canvas>
-          
+
         </Grid>
       </TabItem>
 
-      <TabItem Header="Map">
-        <Grid ColumnDefinitions="Auto,Auto"
-              RowDefinitions="Auto,Auto,Auto">
-          <StackPanel Orientation="Horizontal">
-          <TextBlock Text="Search for news: "/>
-          <TextBox MinWidth="100"/>
-          <Button Content="Search" Command="{Binding GetNews}"/>
+      <TabItem Header="News">
+        <Grid RowDefinitions="Auto,Auto,*,Auto">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="120" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition MinWidth="80" />
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3">
+            <TextBlock Text="Search for news: "/>
+            <TextBox MinWidth="200"/>
+            <Button Content="Search" Command="{Binding GetNews}"/>
           </StackPanel>
-          <TextBlock Text="{Binding TotalNewsResults}"/>
+
+          <TextBlock Margin="5" Grid.Row="1" Text="{Binding TotalNewsResults}"/>
           <ListBox Grid.Row="2"
                    Items="{Binding Articles}"
                    SelectedItem="{Binding SelectedArticle}"
@@ -68,7 +80,14 @@
             </ListBox.DataTemplates>
           </ListBox>
 
-          <Grid DataContext="{Binding SelectedArticle}"
+          <Border BorderThickness="2"
+                  BorderBrush="Black"
+                  Margin="5"
+                  CornerRadius="5"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2">
+            <Grid DataContext="{Binding SelectedArticle}"
                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
                   ColumnDefinitions="Auto,*">
               <TextBlock Text="Title" />
@@ -105,8 +124,8 @@
                          Grid.Row="5"
                          Text="{Binding PublishedAt}" />
             </Grid>
-
-            <TextBlock Text="Powered by NewsAPI"/>
+          </Border>
+          <TextBlock Grid.Row="3" Text="Powered by NewsAPI"/>
         </Grid>
       </TabItem>
     </TabControl>

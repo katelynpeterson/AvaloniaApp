@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using NewsAPI.Models;
 using NewsAPI.Constants;
 using System.Collections.ObjectModel;
-using KPAvalonia;
+using NewsAPI;
 
 namespace Data
 {
@@ -34,10 +34,9 @@ namespace Data
 
         public async Task<ObservableCollection<NewsArticles>> GetNews(string searchQuery)
         {
-            results = 0;
+            results = $"{0}";
             var News = new ObservableCollection<NewsArticles>();
-            var ResultsAndArticles = new ObservableCollection<Object>();
-            var client = new NewsAPI.NewsApiClient(getNewsServiceAPIToken());
+            var client = new NewsApiClient("42b3db2e64f3417b9a0f05c631e544e3");
             var newsArticlesResponse = client.GetEverything(new EverythingRequest {
                 Q = searchQuery,
                 SortBy = SortBys.Popularity,
@@ -53,7 +52,7 @@ namespace Data
                 // here's the first 20
                 foreach (var article in newsArticlesResponse.Articles)
                 {
-                    News.Add(new NewsArticles(article.Title, article.Author, article.Description, article.Url, article.UrlToImage, article.PublishedAt));
+                    News.Add(new NewsArticles(article.Title??"No Result", article.Author ?? "No Result", article.Description ?? "No Result", article.Url ?? "No Result", article.UrlToImage ?? "No Result", article.PublishedAt ?? null));
                 }
             }
             return News;
@@ -68,7 +67,7 @@ namespace Data
         private static string getNewsServiceAPIToken()
         {
             var configurationBuilder = new ConfigurationBuilder()
-                            .AddUserSecrets("newsServiceAPIToken");
+                            .AddUserSecrets("newsServiceAppId");
             var config = configurationBuilder.Build();
             var weatherAppId = config["newsServiceAppId"];
             return weatherAppId;

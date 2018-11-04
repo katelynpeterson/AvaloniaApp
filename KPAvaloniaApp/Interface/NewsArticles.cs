@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace KPAvalonia
+namespace Interfaces
 {
     public class NewsArticles
     {
-        public NewsArticles(string title, string author, string description, string url, IBitmap image, string publishedAt)
+        public NewsArticles(string title, string author, string description, string url, string image, DateTime? publishedAt)
         {
             Title = title;
             Author = author;
@@ -22,7 +22,7 @@ namespace KPAvalonia
         public string Author { get; }
         public string Description { get; }
         public string Url { get; }
-        public Image Image { get; }
-        public string PublishedAt { get; }
+        public string Image { get; }
+        public DateTime? PublishedAt { get; }
     }
 }
