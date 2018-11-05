@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace KPAvalonia
 {
-    class AvaloniaViewModel : INotifyPropertyChanged
+    public class AvaloniaViewModel : INotifyPropertyChanged
     {
         public AvaloniaViewModel() : this(new DefaultDataService())
         { }
@@ -50,6 +50,8 @@ namespace KPAvalonia
             {
                 Articles = await data.GetNews(SearchQuery);
                 TotalNewsResults = data.GetSearchResults();
+                if (Articles.Count > 0)
+                    SelectedArticle = Articles[0];
             }
             catch (Exception ex)
             {
@@ -76,7 +78,7 @@ namespace KPAvalonia
             get => pathToPicture;
             set
             {
-                pathToPicture=value;
+                pathToPicture = value;
                 OnPropertyChanged(nameof(PathToPicture));
                 LoadImage.RaiseCanExecuteChanged();
             }

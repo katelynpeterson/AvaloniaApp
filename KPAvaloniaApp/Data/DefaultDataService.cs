@@ -8,6 +8,9 @@ using NewsAPI.Models;
 using NewsAPI.Constants;
 using System.Collections.ObjectModel;
 using NewsAPI;
+using Hassie.NET.API.NewsAPI.Client;
+using Hassie.NET.API.NewsAPI.Models;
+using Hassie.NET.API.NewsAPI.API.v2;
 
 namespace Data
 {
@@ -36,25 +39,52 @@ namespace Data
         {
             results = $"{0}";
             var News = new ObservableCollection<NewsArticles>();
-            var client = new NewsApiClient("42b3db2e64f3417b9a0f05c631e544e3");
-            var newsArticlesResponse = client.GetEverything(new EverythingRequest {
-                Q = searchQuery,
-                SortBy = SortBys.Popularity,
-                Language = Languages.EN,
-                From = new DateTime(2018, 1, 25)
 
-            });
-            if (newsArticlesResponse.Status == Statuses.Ok)
+            //HassieNewsAPI
+            INewsClient client = new ClientBuilder(){
+                ApiKey = "42b3db2e64f3417b9a0f05c631e544e3"
+            }.Build();
+            try
             {
-                // total results found
-                results = $"{newsArticlesResponse.TotalResults}";
+                INewsArticles newsArticlesResponse = await client.GetTopHeadlines(new TopHeadlinesBuilder()
+           // .WithCountryQuery(Country.US)
+            //.WithLanguageQuery(Language.EN)
+            .WithSourcesQuery(Hassie.NET.API.NewsAPI.API.v2.Source.ABC_NEWS)
+            .Build());
 
-                // here's the first 20
-                foreach (var article in newsArticlesResponse.Articles)
-                {
-                    News.Add(new NewsArticles(article.Title??"No Result", article.Author ?? "No Result", article.Description ?? "No Result", article.Url ?? "No Result", article.UrlToImage ?? "No Result", article.PublishedAt ?? null));
-                }
+
+
+                //NewsAPI
+                //var client = new NewsApiClient("42b3db2e64f3417b9a0f05c631e544e3");
+                //var newsArticlesResponse = client.GetEverything(new EverythingRequest {
+                //    Q = searchQuery,
+                //    SortBy = SortBys.Popularity,
+                //    Language = Languages.EN,
+                //    From = new DateTime(2018, 1, 25)
+
+                //});
+                //if (newsArticlesResponse.Status == Statuses.Ok)
+                //{
+                //    // total results found
+                results = $"{newsArticlesResponse.Count}";
+
+                //    // here's the first 20
+                //    foreach (var article in newsArticlesResponse.Articles)
+                //    {
+                //        News.Add(new NewsArticles(article.Title??"No Result", article.Author ?? "No Result", article.Description ?? "No Result", article.Url ?? "No Result", article.UrlToImage ?? "No Result", article.PublishedAt ?? null));
+                //    }
+                //}
+
+                foreach (var article in newsArticlesResponse)
+            {
+                News.Add(new NewsArticles(article.Title ?? "No Result", article.Author ?? "No Result", article.Description ?? "No Result", article.URL ?? "No Result", article.ImageURL ?? "No Result", article.PublishTime, article.SourceName ?? "No Result"));
             }
+            }
+            catch (Exception ex)
+            {
+                Console.Write($"Error {ex.Message}");
+            }
+
             return News;
         }
 

@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace KPAvalonia
 {
-    class MyCommand : ICommand
+    public class MyCommand : ICommand
     {
         private readonly Func<bool> canExecute;
         private readonly Action execute;

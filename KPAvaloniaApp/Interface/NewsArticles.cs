@@ -8,7 +8,7 @@ namespace Interfaces
 {
     public class NewsArticles
     {
-        public NewsArticles(string title, string author, string description, string url, string image, DateTime? publishedAt)
+        public NewsArticles(string title, string author, string description, string url, string image, DateTimeOffset? publishedAt, string sourceName)
         {
             Title = title;
             Author = author;
@@ -16,6 +16,7 @@ namespace Interfaces
             Url = url;
             Image = image;
             PublishedAt = publishedAt;
+            SourceName = sourceName;
         }
 
         public string Title { get; }
@@ -23,6 +24,7 @@ namespace Interfaces
         public string Description { get; }
         public string Url { get; }
         public string Image { get; }
-        public DateTime? PublishedAt { get; }
+        public DateTimeOffset? PublishedAt { get; }
+        public string SourceName { get; }
     }
 }
